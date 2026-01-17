@@ -9,16 +9,24 @@
   <style>
     * { box-sizing: border-box; }
 
+    :root{
+      --bg-overlay-1: rgba(11, 15, 26, 0.75);
+      --bg-overlay-2: rgba(11, 15, 26, 0.88);
+      --card-bg: rgba(0, 0, 0, 0.60);
+      --border: rgba(255,255,255,0.12);
+      --shadow: 0 24px 70px rgba(0,0,0,0.65);
+      --radius: 18px;
+      --accent1: #1e90ff;
+      --accent2: #4fa9ff;
+    }
+
     body {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
       color: #ffffff;
       background:
-        linear-gradient(
-          rgba(11, 15, 26, 0.75),
-          rgba(11, 15, 26, 0.88)
-        ),
+        linear-gradient(var(--bg-overlay-1), var(--bg-overlay-2)),
         url("/assets/background.jpg") no-repeat center center fixed;
       background-size: cover;
     }
@@ -32,17 +40,16 @@
     .layout {
       display: grid;
       grid-template-columns: 1fr auto;
-      gap: 36px;
+      gap: 32px;
       align-items: start;
     }
 
-    /* ===== LEFT CARD ===== */
-
+    /* LEFT CONTENT CARD */
     .card {
-      background: rgba(0, 0, 0, 0.60);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 18px;
-      box-shadow: 0 24px 70px rgba(0,0,0,0.65);
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
       padding: 28px 26px;
       backdrop-filter: blur(6px);
       display: flex;
@@ -50,35 +57,33 @@
       text-align: center;
     }
 
-    /* ===== RIGHT IMAGE ===== */
-
+    /* RIGHT IMAGE CARD (frame fits content, not stretched) */
     .side-image {
-      background: rgba(0,0,0,0.60);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 18px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
       box-shadow: 0 18px 50px rgba(0,0,0,0.6);
-      padding: 20px;
+      padding: 18px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
     }
 
     .side-image img {
-      width: 620px;
-      max-width: none;
+      width: 620px;      /* big on desktop */
+      max-width: none;   /* do not clamp on desktop */
       height: auto;
       display: block;
       opacity: 0.98;
     }
 
-    /* ===== LOGOS ===== */
-
+    /* LOGOS */
     .logo-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 16px;
-      margin-bottom: 22px;
+      margin-bottom: 18px;
     }
 
     .logo-left,
@@ -88,13 +93,8 @@
       gap: 10px;
     }
 
-    .logo-left img {
-      max-height: 44px;
-    }
-
-    .logo-right img {
-      max-height: 64px;
-    }
+    .logo-left img { max-height: 44px; }
+    .logo-right img { max-height: 64px; }
 
     .logo-caption {
       font-size: 12px;
@@ -102,22 +102,18 @@
       white-space: nowrap;
     }
 
-    /* ===== TEXT ===== */
-
+    /* HEADLINE */
     h1 {
       font-size: 32px;
-      margin: 0 0 6px;
+      margin: 0 0 8px;
+      letter-spacing: -0.2px;
     }
 
     .subheadline {
       font-size: 14px;
-      opacity: 0.75;
-      margin-bottom: 18px;
-    }
-
-    h2 {
-      font-size: 22px;
-      margin: 36px 0 12px;
+      opacity: 0.78;
+      margin: 0 0 18px;
+      line-height: 1.4;
     }
 
     p {
@@ -127,16 +123,20 @@
       margin: 0 0 14px;
     }
 
-    /* ===== CTA ===== */
+    h2 {
+      font-size: 22px;
+      margin: 34px 0 12px;
+    }
 
+    /* CTA */
     .cta-block {
-      margin: 28px 0 18px;
+      margin: 26px 0 16px;
     }
 
     .button {
       display: inline-block;
       padding: 20px 48px;
-      background: linear-gradient(135deg, #1e90ff, #4fa9ff);
+      background: linear-gradient(135deg, var(--accent1), var(--accent2));
       color: #ffffff;
       text-decoration: none;
       font-size: 22px;
@@ -144,36 +144,27 @@
       letter-spacing: 0.2px;
       border-radius: 14px;
       box-shadow: 0 18px 40px rgba(30,144,255,0.35);
+      border: 1px solid rgba(255,255,255,0.14);
+      transition: transform 0.12s ease, filter 0.12s ease;
       animation: ctaPulse 3.2s ease-in-out infinite;
     }
-      @keyframes ctaPulse {
+
+    .button:hover {
+      filter: brightness(1.05);
+      transform: translateY(-1px);
+    }
+
+    @keyframes ctaPulse {
       0%   { box-shadow: 0 18px 40px rgba(30,144,255,0.30); }
       50%  { box-shadow: 0 22px 46px rgba(30,144,255,0.45); }
       100% { box-shadow: 0 18px 40px rgba(30,144,255,0.30); }
     }
-    .button:hover {
-      filter: brightness(1.05);
-    }
-.cta-secondary {
-  margin-top: 36px;
-  text-align: center;
-}
 
-.button-secondary {
-  font-size: 18px;
-  padding: 14px 32px;
-  opacity: 0.9;
-  box-shadow: 0 10px 24px rgba(30,144,255,0.25);
-  animation: none; /* kein Pulse – bewusst ruhiger */
-}
-
-.button-secondary:hover {
-  opacity: 1;
-}
     .note {
       font-size: 13px;
-      opacity: 0.78;
+      opacity: 0.80;
       margin-top: 10px;
+      line-height: 1.45;
     }
 
     ul {
@@ -182,34 +173,117 @@
       margin: 18px auto 0;
       padding-left: 20px;
       line-height: 1.65;
+      opacity: 0.95;
     }
 
     .referral-image {
-      margin-top: 30px;
+      margin-top: 26px;
       text-align: center;
     }
 
     .referral-image img {
-      max-width: 320px;
+      max-width: 340px;
       width: 100%;
+      height: auto;
+      opacity: 0.95;
       filter: drop-shadow(0 10px 26px rgba(0,0,0,0.6));
+    }
+
+    /* SECOND CTA (quiet) */
+    .cta-secondary {
+      margin-top: 34px;
+      text-align: center;
+    }
+
+    .button-secondary {
+      font-size: 18px;
+      font-weight: 800;
+      padding: 14px 32px;
+      border-radius: 12px;
+      opacity: 0.92;
+      box-shadow: 0 10px 24px rgba(30,144,255,0.25);
+      animation: none; /* keep this one calm */
+    }
+
+    .button-secondary:hover {
+      opacity: 1;
+      transform: translateY(-1px);
     }
 
     footer {
       font-size: 13px;
-      opacity: 0.7;
-      margin-top: 26px;
+      opacity: 0.72;
+      margin-top: 22px;
       line-height: 1.6;
     }
 
-    /* ===== MOBILE ===== */
-
+    /* MOBILE CLEANUP */
     @media (max-width: 900px) {
       .layout {
         grid-template-columns: 1fr;
+        gap: 18px;
       }
+
+      .container {
+        padding: 26px 14px;
+      }
+
+      .card {
+        padding: 22px 18px;
+        border-radius: 16px;
+      }
+
+      .side-image {
+        margin: 0 auto;
+        padding: 14px;
+        border-radius: 16px;
+      }
+
       .side-image img {
-        width: 320px;
+        width: 100%;
+        max-width: 520px;
+      }
+
+      h1 {
+        font-size: 26px;
+      }
+
+      .subheadline {
+        font-size: 13.5px;
+        margin-bottom: 14px;
+      }
+
+      p {
+        font-size: 15.5px;
+      }
+
+      .button {
+        width: 100%;
+        max-width: 520px;
+        padding: 18px 18px;
+        font-size: 20px;
+      }
+
+      .button-secondary {
+        width: 100%;
+        max-width: 520px;
+      }
+
+      .logo-row {
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 16px;
+      }
+
+      .logo-caption {
+        white-space: normal;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .button {
+        font-size: 19px;
       }
     }
   </style>
@@ -233,9 +307,7 @@
         </div>
 
         <h1>Star Citizen – 50,000 UEC Bonus</h1>
-        <div class="subheadline">
-          Start for free on the official developer website
-        </div>
+        <div class="subheadline">Start for free on the official developer website</div>
 
         <p>
           Star Citizen is an ambitious online space game featuring trading, exploration,
@@ -268,30 +340,33 @@
         </ul>
 
         <div class="referral-image">
-          <img src="/assets/StarCitizenReferralProgram.png"
-               alt="Star Citizen Referral Program">
+          <img src="/assets/StarCitizenReferralProgram.png" alt="Star Citizen Referral Program">
         </div>
+
+        <!-- SECOND CTA -->
         <div class="cta-secondary">
-  <a class="button button-secondary"
-     href="https://www.robertsspaceindustries.com/enlist?referral=STAR-VYJ5-MW35"
-     target="_blank" rel="noopener">
-    Create your account – get 50,000 UEC
-  </a>
-        </div> 
+          <a class="button button-secondary"
+             href="https://www.robertsspaceindustries.com/enlist?referral=STAR-VYJ5-MW35"
+             target="_blank" rel="noopener">
+            Create your account – get 50,000 UEC
+          </a>
+        </div>
+
         <footer>
           This website is not an official website of the developer.<br>
-          Star Citizen is developed and operated by Cloud Imperium Games.
+          Star Citizen is developed and operated by Cloud Imperium Games.<br>
+          Registration, gameplay, and support are handled exclusively via the official website.
         </footer>
 
       </div>
 
       <!-- RIGHT IMAGE -->
       <div class="side-image">
-        <img src="/assets/ReferralRewards.jpg"
-             alt="Star Citizen Referral Rewards">
+        <img src="/assets/ReferralRewards.jpg" alt="Star Citizen Referral Rewards">
       </div>
 
     </div>
   </div>
 </body>
 </html>
+```0 
