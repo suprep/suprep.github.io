@@ -34,26 +34,20 @@
       max-width: 1400px;
       margin: 0 auto;
       padding: 56px 18px;
+      position: relative;
     }
 
-    /* ===== GRID LAYOUT ===== */
-    .layout {
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      gap: 32px;
-      align-items: start;
+    /* ===== CENTERED CONTENT WRAPPER ===== */
+    .center-wrap {
+      display: flex;
+      justify-content: center;   /* REAL viewport centering */
+      align-items: flex-start;
     }
 
-    /* LEFT SPACER */
-    .spacer {
-      display: block;
-    }
-
-    /* ===== CENTER CONTENT ===== */
+    /* ===== MAIN CARD (TRULY CENTERED) ===== */
     .card {
-      max-width: 720px;
       width: 100%;
-      margin: 0 auto;
+      max-width: 720px;
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: var(--radius);
@@ -65,8 +59,11 @@
       flex-direction: column;
     }
 
-    /* ===== RIGHT IMAGE ===== */
+    /* ===== RIGHT IMAGE (FLOATING, DOES NOT AFFECT CENTER) ===== */
     .side-image {
+      position: absolute;
+      right: 18px;
+      top: 56px;
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: var(--radius);
@@ -203,31 +200,18 @@
     }
 
     /* ===== MOBILE ===== */
-    @media (max-width: 900px) {
-      .layout {
-        grid-template-columns: 1fr;
-        gap: 18px;
-      }
-
+    @media (max-width: 1100px) {
       .side-image {
-        margin: 0 auto;
+        position: static;
+        margin: 0 auto 18px;
       }
+    }
 
-      .side-image img {
-        width: 100%;
-        max-width: 520px;
-      }
-
+    @media (max-width: 600px) {
       .button {
         width: 100%;
-        max-width: 520px;
         font-size: 20px;
         padding: 18px;
-      }
-
-      .button-secondary {
-        width: 100%;
-        max-width: 520px;
       }
     }
   </style>
@@ -235,11 +219,14 @@
 
 <body>
   <div class="container">
-    <div class="layout">
 
-      <div class="spacer"></div>
+    <!-- RIGHT IMAGE -->
+    <div class="side-image">
+      <img src="/assets/ReferralRewards.jpg" alt="Star Citizen Referral Rewards">
+    </div>
 
-      <!-- CENTER CONTENT -->
+    <!-- TRUE CENTER -->
+    <div class="center-wrap">
       <div class="card">
 
         <div class="logo-row">
@@ -300,13 +287,8 @@
         </footer>
 
       </div>
-
-      <!-- RIGHT IMAGE -->
-      <div class="side-image">
-        <img src="/assets/ReferralRewards.jpg" alt="Star Citizen Referral Rewards">
-      </div>
-
     </div>
+
   </div>
 </body>
 </html>
