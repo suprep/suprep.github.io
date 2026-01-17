@@ -37,21 +37,21 @@
       position: relative;
     }
 
-    /* ===== CENTERED CONTENT WRAPPER ===== */
+    /* ===== TRUE CENTER WRAP ===== */
     .center-wrap {
-      /* Reserve space on the right so the centered card can't overlap the side image */
-      @media (min-width: 1101px) {
-      .center-wrap {
-      padding-right: 680px; /* must be >= side image width + padding */
-      }
-    }
-
       display: flex;
-      justify-content: center;   /* REAL viewport centering */
+      justify-content: center;   /* truly centered in viewport */
       align-items: flex-start;
     }
 
-    /* ===== MAIN CARD (TRULY CENTERED) ===== */
+    /* Prevent overlap with right image on desktop (reserve space) */
+    @media (min-width: 1101px) {
+      .center-wrap {
+        padding-right: 720px; /* >= displayed image width + frame/padding */
+      }
+    }
+
+    /* ===== MAIN CARD (CENTERED) ===== */
     .card {
       width: 100%;
       max-width: 720px;
@@ -64,9 +64,13 @@
       text-align: center;
       display: flex;
       flex-direction: column;
+
+      /* Optional stacking fix */
+      position: relative;
+      z-index: 2;
     }
 
-    /* ===== RIGHT IMAGE (FLOATING, DOES NOT AFFECT CENTER) ===== */
+    /* ===== RIGHT IMAGE (FLOATING) ===== */
     .side-image {
       position: absolute;
       right: 18px;
@@ -79,6 +83,9 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
+
+      /* Optional stacking fix */
+      z-index: 1;
     }
 
     .side-image img {
@@ -87,7 +94,7 @@
       display: block;
     }
 
-    /* ===== LOGOS ===== */
+    /* ===== LOGOS (side-by-side) ===== */
     .logo-row {
       display: flex;
       justify-content: space-between;
@@ -116,12 +123,14 @@
     h1 {
       font-size: 32px;
       margin: 0 0 8px;
+      letter-spacing: -0.2px;
     }
 
     .subheadline {
       font-size: 14px;
       opacity: 0.75;
       margin-bottom: 18px;
+      line-height: 1.4;
     }
 
     p {
@@ -151,14 +160,20 @@
       font-weight: 800;
       letter-spacing: 0.2px;
       border-radius: 14px;
-      box-shadow: 0 18px 40px rgba(30,144,255,0.35);
       border: 1px solid rgba(255,255,255,0.14);
+      box-shadow: 0 18px 40px rgba(30,144,255,0.35);
       animation: ctaPulse 3.2s ease-in-out infinite;
+      transition: transform 0.12s ease, filter 0.12s ease;
+    }
+
+    .button:hover {
+      filter: brightness(1.05);
+      transform: translateY(-1px);
     }
 
     @keyframes ctaPulse {
-      0% { box-shadow: 0 18px 40px rgba(30,144,255,0.30); }
-      50% { box-shadow: 0 22px 46px rgba(30,144,255,0.45); }
+      0%   { box-shadow: 0 18px 40px rgba(30,144,255,0.30); }
+      50%  { box-shadow: 0 22px 46px rgba(30,144,255,0.45); }
       100% { box-shadow: 0 18px 40px rgba(30,144,255,0.30); }
     }
 
@@ -166,6 +181,7 @@
       font-size: 13px;
       opacity: 0.8;
       margin-top: 10px;
+      line-height: 1.45;
     }
 
     ul {
@@ -173,6 +189,7 @@
       margin: 18px auto 0;
       padding-left: 20px;
       line-height: 1.65;
+      max-width: 560px;
     }
 
     .referral-image {
@@ -182,7 +199,9 @@
     .referral-image img {
       max-width: 340px;
       width: 100%;
+      height: auto;
       filter: drop-shadow(0 10px 26px rgba(0,0,0,0.6));
+      opacity: 0.95;
     }
 
     /* ===== SECOND CTA ===== */
@@ -197,6 +216,7 @@
       opacity: 0.92;
       animation: none;
       box-shadow: 0 10px 24px rgba(30,144,255,0.25);
+      border-radius: 12px;
     }
 
     footer {
@@ -206,19 +226,45 @@
       line-height: 1.6;
     }
 
-    /* ===== MOBILE ===== */
+    /* ===== RESPONSIVE ===== */
     @media (max-width: 1100px) {
+      /* side image becomes part of flow */
       .side-image {
         position: static;
         margin: 0 auto 18px;
       }
+      .side-image img {
+        width: 100%;
+        max-width: 520px;
+      }
+      .center-wrap {
+        padding-right: 0;
+      }
     }
 
     @media (max-width: 600px) {
+      .container {
+        padding: 26px 14px;
+      }
+      h1 {
+        font-size: 26px;
+      }
+      p {
+        font-size: 15.5px;
+      }
       .button {
         width: 100%;
+        max-width: 520px;
         font-size: 20px;
         padding: 18px;
+      }
+      .button-secondary {
+        width: 100%;
+        max-width: 520px;
+      }
+      .logo-caption {
+        white-space: normal;
+        text-align: left;
       }
     }
   </style>
@@ -290,7 +336,8 @@
 
         <footer>
           This website is not an official website of the developer.<br>
-          Star Citizen is developed and operated by Cloud Imperium Games.
+          Star Citizen is developed and operated by Cloud Imperium Games.<br>
+          Registration, gameplay, and support are handled exclusively via the official website.
         </footer>
 
       </div>
