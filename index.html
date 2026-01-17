@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Star Citizen – 50,000 UEC Bonus</title>
-  <meta name="description" content="Start Star Citizen on the official developer website. Register via this partner link and receive a 50,000 UEC starting bonus." />
+  <meta name="description" content="Create your Star Citizen account on the official developer website and receive a 50,000 UEC starting bonus." />
 
   <style>
     * { box-sizing: border-box; }
@@ -33,7 +33,7 @@
       display: grid;
       grid-template-columns: 1fr auto;
       gap: 36px;
-      align-items: start; /* IMPORTANT */
+      align-items: start;
     }
 
     /* ===== LEFT CARD ===== */
@@ -43,14 +43,14 @@
       border: 1px solid rgba(255,255,255,0.12);
       border-radius: 18px;
       box-shadow: 0 24px 70px rgba(0,0,0,0.65);
-      padding: 26px 24px;
+      padding: 28px 26px;
       backdrop-filter: blur(6px);
       display: flex;
       flex-direction: column;
       text-align: center;
     }
 
-    /* ===== RIGHT IMAGE (FIXED) ===== */
+    /* ===== RIGHT IMAGE ===== */
 
     .side-image {
       background: rgba(0,0,0,0.60);
@@ -58,17 +58,17 @@
       border-radius: 18px;
       box-shadow: 0 18px 50px rgba(0,0,0,0.6);
       padding: 20px;
-      display: inline-flex;   /* key change */
+      display: inline-flex;
       align-items: center;
       justify-content: center;
     }
 
     .side-image img {
-    width: 620px;          /* deutlich größer */
-    max-width: none;       /* WICHTIG: keine Bremse mehr */
-    height: auto;
-    display: block;
-    opacity: 0.98;
+      width: 620px;
+      max-width: none;
+      height: auto;
+      display: block;
+      opacity: 0.98;
     }
 
     /* ===== LOGOS ===== */
@@ -78,7 +78,7 @@
       justify-content: space-between;
       align-items: center;
       gap: 16px;
-      margin-bottom: 20px;
+      margin-bottom: 22px;
     }
 
     .logo-left,
@@ -90,12 +90,10 @@
 
     .logo-left img {
       max-height: 44px;
-      filter: drop-shadow(0 8px 18px rgba(0,0,0,0.5));
     }
 
     .logo-right img {
       max-height: 64px;
-      filter: drop-shadow(0 8px 18px rgba(0,0,0,0.5));
     }
 
     .logo-caption {
@@ -107,13 +105,19 @@
     /* ===== TEXT ===== */
 
     h1 {
-      font-size: 30px;
-      margin: 0 0 16px;
+      font-size: 32px;
+      margin: 0 0 6px;
+    }
+
+    .subheadline {
+      font-size: 14px;
+      opacity: 0.75;
+      margin-bottom: 18px;
     }
 
     h2 {
       font-size: 22px;
-      margin: 34px 0 12px;
+      margin: 36px 0 12px;
     }
 
     p {
@@ -123,23 +127,32 @@
       margin: 0 0 14px;
     }
 
+    /* ===== CTA ===== */
+
+    .cta-block {
+      margin: 28px 0 18px;
+    }
+
     .button {
       display: inline-block;
-      margin: 24px 0 10px;
-      padding: 16px 36px;
-      background: #1e90ff;
+      padding: 20px 48px;
+      background: linear-gradient(135deg, #1e90ff, #4fa9ff);
       color: #ffffff;
       text-decoration: none;
-      font-size: 18px;
+      font-size: 20px;
       font-weight: 700;
-      border-radius: 12px;
-      box-shadow: 0 14px 34px rgba(30,144,255,0.28);
+      border-radius: 14px;
+      box-shadow: 0 18px 40px rgba(30,144,255,0.35);
+    }
+
+    .button:hover {
+      filter: brightness(1.05);
     }
 
     .note {
       font-size: 13px;
       opacity: 0.78;
-      margin-top: 6px;
+      margin-top: 10px;
     }
 
     ul {
@@ -151,7 +164,7 @@
     }
 
     .referral-image {
-      margin-top: 28px;
+      margin-top: 30px;
       text-align: center;
     }
 
@@ -164,7 +177,7 @@
     footer {
       font-size: 13px;
       opacity: 0.7;
-      margin-top: 24px;
+      margin-top: 26px;
       line-height: 1.6;
     }
 
@@ -174,11 +187,6 @@
       .layout {
         grid-template-columns: 1fr;
       }
-
-      .side-image {
-        margin: 0 auto;
-      }
-
       .side-image img {
         width: 320px;
       }
@@ -203,36 +211,39 @@
           </div>
         </div>
 
-        <h1>Star Citizen – Start for free on the official developer website</h1>
+        <h1>Star Citizen – 50,000 UEC Bonus</h1>
+        <div class="subheadline">
+          Start for free on the official developer website
+        </div>
 
         <p>
           Star Citizen is an ambitious online space game featuring trading, exploration,
-          and spaceship combat. Using the partner link below, you will be taken directly
-          to the official registration page of the developer.
+          and spaceship combat. Registration takes only a few minutes.
         </p>
 
-        <a class="button"
-           href="https://www.robertsspaceindustries.com/enlist?referral=STAR-VYJ5-MW35"
-           target="_blank" rel="noopener">
-          Play now (50,000 UEC bonus)
-        </a>
+        <div class="cta-block">
+          <a class="button"
+             href="https://www.robertsspaceindustries.com/enlist?referral=STAR-VYJ5-MW35"
+             target="_blank" rel="noopener">
+            Start playing now – get 50,000 UEC
+          </a>
 
-        <div class="note">
-          Notice: This is a partner link. If you use it, the site operator may receive a commission.
-          There are no disadvantages for you.
+          <div class="note">
+            Partner link · No extra cost · Official developer website
+          </div>
         </div>
 
         <h2>50,000 UEC starting bonus</h2>
 
         <p>
-          Users who register via this partner link receive <strong>50,000 UEC</strong>
-          (in-game currency) as a bonus.
+          Users who create their account via this partner link receive
+          <strong>50,000 UEC</strong> (in-game currency) as a bonus.
         </p>
 
         <ul>
           <li>Official developer website</li>
-          <li>No extra cost, no disadvantages</li>
-          <li>Extra starting capital in game</li>
+          <li>No extra cost or disadvantages</li>
+          <li>Additional starting capital in game</li>
         </ul>
 
         <div class="referral-image">
